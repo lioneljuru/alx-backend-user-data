@@ -29,7 +29,7 @@ def get_logger() -> logging.Logger:
     """
     logger = logging.getLogger("user_data")
     stream_handler = logging.StreamHandler()
-    stream_handler.serFormatter(RedactingFormatter(PII_FIELDS))
+    stream_handler.setFormatter(RedactingFormatter(PII_FIELDS))
     logger.setLevel(logging.INFO)
     logger.propagate = False
     logger.addHandler(stream_handler)
@@ -65,7 +65,7 @@ def main():
         cursor.execute(query)
         rows = cursor.fetchall()
         for row in rows:
-            records = map(
+            record = map(
                 lambda x: '{}={}'.format(x[0], x[1]),
                 zip(columns, row),
             )
