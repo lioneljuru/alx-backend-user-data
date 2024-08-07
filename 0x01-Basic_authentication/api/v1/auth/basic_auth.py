@@ -50,7 +50,7 @@ class BasicAuth(Auth):
         header that uses the Basic authentication flow.
         """
         if type(decoded_base64_authorization_header) == str:
-            patter = r'(?P<user>[^:]+(?P<password>.+)'
+            pattern = r'(?P<user>[^:]+):(?P<password>.+)'
             field_match = re.fullmatch(
                 pattern,
                 decoded_base64_authorization_header.strip(),
